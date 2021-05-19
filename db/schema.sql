@@ -1,0 +1,3 @@
+DROP DATABASE IF EXISTS gigster_db;
+
+CREATE DATABASE gigster_db;
