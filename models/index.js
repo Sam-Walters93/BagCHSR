@@ -1,8 +1,8 @@
 const User = require('./User');
 const Gig = require('./Gig');
 
-// Gig.belongsTo(User);
-// User.hasMany(Gig);
+Gig.belongsTo(User);
+User.hasMany(Gig);
 
 module.exports = { User, Gig };
 

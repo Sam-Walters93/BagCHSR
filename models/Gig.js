@@ -12,12 +12,12 @@ Gig.init(
             autoIncrement: true,
         },
 
-        // user_id: {
-        //     references: {
-        //         model: 'user',
-        //         key: 'id'
-        //     }
-        // },
+        user_id: {
+            references: {
+                model: 'user',
+                key: 'id'
+            }
+        },
 
         name: {
             type: DataTypes.STRING,

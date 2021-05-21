@@ -25,12 +25,12 @@ User.init(
             validate: { len: [6] }
         },
 
-        // gigs: {
-        //     references: {
-        //         model: 'gig',
-        //         key: 'id'
-        //     }
-        // } 
+        gigs: {
+            references: {
+                model: 'gig',
+                key: 'id'
+            }
+        } 
     },
     {
         // hooks: ,
