@@ -23,14 +23,16 @@ User.init(
             type: DataTypes.STRING,
             allowNull: false,
             validate: { len: [6] }
-        },
+        }
 
-        gigs: {
-            references: {
-                model: 'gig',
-                key: 'id'
-            }
-        } 
+        // gigs: {
+        //     type: DataTypes.INTEGER,
+        //     allowNull: true,
+        //     references: {
+        //         model: 'gig',
+        //         key: 'id'
+        //     }
+        // } 
     },
     {
         // hooks: ,

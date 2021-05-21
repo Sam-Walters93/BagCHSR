@@ -13,6 +13,7 @@ Gig.init(
         },
 
         user_id: {
+            type: DataTypes.INTEGER,
             references: {
                 model: 'user',
                 key: 'id'
@@ -30,15 +31,15 @@ Gig.init(
             validate: { isDate: true }
         },
 
-        start_time: {
-            type: DataTypes.TIME,
-            allowNull: false,
-        },
+        // start_time: {
+        //     type: DataTypes.TIME,
+        //     allowNull: false,
+        // },
 
-        end_time: {
-            type: DataTypes.TIME,
-            allowNull: false,
-        },
+        // end_time: {
+        //     type: DataTypes.TIME,
+        //     allowNull: false,
+        // },
 
         location_name: {
             type: DataTypes.STRING,
