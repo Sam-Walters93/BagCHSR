@@ -1,49 +1,56 @@
-const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection');
-// const bcrypt = require('bcrypt');
+const { Model, DataTypes } = require("sequelize");
+const sequelize = require("../config/connection");
+const bcrypt = require("bcrypt");
+const { beforeCreate, beforeUpdate } = require("./Gig");
 
-class User extends Model {}
+class User extends Model {
+  checkpassword(loginPw) {
+    return bcrypt.compareSync(loginPw, this.password);
+  }
+}
 
 User.init(
-    {
-        id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            primaryKey: true,
-            autoIncrement: true
-        },
-        email: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            unique: true,
-            validate: { isEmail: true }
-        },
-
-        password: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: { len: [6] }
-        }
-
-        // gigs: {
-        //     type: DataTypes.INTEGER,
-        //     allowNull: true,
-        //     references: {
-        //         model: 'gig',
-        //         key: 'id'
-        //     }
-        // } 
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true,
     },
-    {
-        // hooks: ,
-        sequelize,
-        timestamps: false,
-        freezeTableName: true,
-        underscored: true,
-        modelName: 'user'
-    }
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+      validate: { isEmail: true },
+    },
+
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: { len: [6] },
+    },
+  },
+  {
+    hooks: {
+      async beforeCreate(newUserData) {
+        newUserData.password = await bcrypt.hash(newUserData.password, 10);
+        return newUserData;
+      },
+
+      async beforeUpdate(updatedUserData) {
+        updatedUserData.password = await bcrypt.hash(
+          updatedUserData.password,
+          10
+        );
+        return updatedUserData;
+      },
+    },
+    sequelize,
+    timestamps: false,
+    freezeTableName: true,
+    underscored: true,
+    modelName: "user",
+  }
 );
 
 module.exports = User;
-
-// need to implement password hashing, and properly reference gig model. Could also add username property?
