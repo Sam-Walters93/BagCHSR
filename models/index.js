@@ -1,5 +1,9 @@
 const User = require('./User');
-const Gigs = require('./Gigs');
+const Gig = require('./Gig');
 
-module.exports = { User };
-module.exports = { Gigs };
+Gig.belongsTo(User);
+User.hasMany(Gig);
+
+module.exports = { User, Gig };
+
+// need to properly assign foreign keys, possibly create a through model for tracking each gig that belongs to a specific user?
