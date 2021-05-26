@@ -20,26 +20,20 @@ Gig.init(
             }
         },
 
-        name: {
+        gig_name: {
             type: DataTypes.STRING,
             allowNull: false,
         },
 
-        date: {
-            type: DataTypes.DATE,
+        start_time: {
+            type: DataTypes.TIME,
             allowNull: false,
-            validate: { isDate: true }
         },
 
-        // start_time: {
-        //     type: DataTypes.TIME,
-        //     allowNull: false,
-        // },
-
-        // end_time: {
-        //     type: DataTypes.TIME,
-        //     allowNull: false,
-        // },
+        end_time: {
+            type: DataTypes.TIME,
+            allowNull: false,
+        },
 
         location_name: {
             type: DataTypes.STRING,
@@ -77,5 +71,3 @@ Gig.init(
 );
 
 module.exports = Gig;
-
-// need to properly reference user model and ensure that these columns each have the correct options
