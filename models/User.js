@@ -36,15 +36,6 @@ User.init(
             allowNull: false,
             validate: { len: [8] }
         }
-
-        // gigs: {
-        //     type: DataTypes.INTEGER,
-        //     allowNull: true,
-        //     references: {
-        //         model: 'gig',
-        //         key: 'id'
-        //     }
-        // } 
     },
     {
         hooks: {
